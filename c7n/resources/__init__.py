@@ -37,7 +37,7 @@ def should_load_provider(name, provider_types, no_wild=False):
     return False
 
 
-PROVIDER_NAMES = ('aws', 'azure', 'gcp', 'k8s', 'openstack', 'awscc', 'tencentcloud', 'terraform')
+PROVIDER_NAMES = ('aws', 'azure', 'gcp', 'virtana', 'k8s', 'openstack', 'awscc', 'tencentcloud', 'terraform')
 
 
 def load_available(resources=True):
@@ -80,6 +80,10 @@ def load_providers(provider_types):
     if should_load_provider('gcp', provider_types):
         from c7n_gcp.entry import initialize_gcp
         initialize_gcp()
+
+    if should_load_provider('virtana', provider_types):
+        from c7n_virtana.entry import initialize_virtana
+        initialize_virtana()
 
     if should_load_provider('k8s', provider_types):
         from c7n_kube.entry import initialize_kube
